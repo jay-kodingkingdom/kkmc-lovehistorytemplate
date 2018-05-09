@@ -1,0 +1,6 @@
+name: MakeHistoryTemplate
+main: com.kodingkingdom.makehistory.TemplatePlugin
+version: 0.0.1
+softdepend: [WorldEdit,ProtocolLib]
+commands:
+   mkh:
