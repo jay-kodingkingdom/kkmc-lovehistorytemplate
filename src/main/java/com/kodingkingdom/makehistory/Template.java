@@ -7,11 +7,10 @@ import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.kodingkingdom.makehistory.commandline.CommandLine;
-import com.kodingkingdom.makehistory.icons.Icon;
+import com.kodingkingdom.pager.icons.Icon;
 import com.kodingkingdom.makehistory.menu.MinecraftLearnHistory;
-import com.kodingkingdom.makehistory.menu.TemplateBuildingPage;
 
+//TODO: make on hand book automatically usable
 public class Template implements Listener{
 
 	TemplatePlugin plugin;	
@@ -19,7 +18,6 @@ public class Template implements Listener{
 	
 	//TODO: handle cases of old book already on hand, aka onheld event not fired
 	public void Live(){
-		CommandLine.go();
 		//plugin.getCommand("mkh").setExecutor(this);
 		registerEvents(this);}
 	

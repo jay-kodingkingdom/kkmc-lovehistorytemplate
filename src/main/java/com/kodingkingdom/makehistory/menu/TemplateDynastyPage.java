@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import org.bukkit.inventory.ItemStack;
 import org.javatuples.Pair;
 
-import com.kodingkingdom.makehistory.page.CompositeBoxPage;
-import com.kodingkingdom.makehistory.page.select.Layout;
-import com.kodingkingdom.makehistory.page.select.SelectItem;
-import com.kodingkingdom.makehistory.page.select.SelectItemCategoryPage;
-import com.kodingkingdom.makehistory.page.standard.ControlsPage;
+import com.kodingkingdom.pager.page.CompositeBoxPage;
+import com.kodingkingdom.pager.page.select.Layout;
+import com.kodingkingdom.pager.page.select.SelectItem;
+import com.kodingkingdom.pager.page.select.SelectItemCategoryPage;
+import com.kodingkingdom.pager.page.standard.ControlsPage;
 
 public class TemplateDynastyPage extends CompositeBoxPage {
 	Collection<Pair<ItemStack,TemplateBuildingPage>> buildings;

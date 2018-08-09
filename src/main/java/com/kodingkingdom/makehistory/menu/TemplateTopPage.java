@@ -12,14 +12,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.javatuples.Pair;
 
-import com.kodingkingdom.makehistory.commandline.CommandLine;
-import com.kodingkingdom.makehistory.icons.Icon;
-import com.kodingkingdom.makehistory.icons.Icon.Textures;
-import com.kodingkingdom.makehistory.page.CompositeBoxPage;
-import com.kodingkingdom.makehistory.page.Menu;
-import com.kodingkingdom.makehistory.page.select.Layout;
-import com.kodingkingdom.makehistory.page.select.SelectItem;
-import com.kodingkingdom.makehistory.page.select.SelectItemCategoryPage;
+import com.kodingkingdom.pager.icons.Icon;
+import com.kodingkingdom.pager.icons.Icon.Textures;
+import com.kodingkingdom.pager.page.CompositeBoxPage;
+import com.kodingkingdom.pager.page.Menu;
+import com.kodingkingdom.pager.page.select.Layout;
+import com.kodingkingdom.pager.page.select.SelectItem;
+import com.kodingkingdom.pager.page.select.SelectItemCategoryPage;
 
 public class TemplateTopPage extends CompositeBoxPage {
 	
@@ -85,7 +84,7 @@ public class TemplateTopPage extends CompositeBoxPage {
 						new Pair<ItemStack,TemplateBuildingPage> (Icon.makeIcon(Textures.set).withName("佛教東傳").asIcon(), new TemplateBuildingPage (player, Arrays.asList(
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("南禪寺").asIcon(), "14_complete_W")
 						))),
-						new Pair<ItemStack,TemplateBuildingPage> (Icon.makeIcon(Textures.set).withName("玄武門之變東傳").asIcon(), new TemplateBuildingPage (player, Arrays.asList(
+						new Pair<ItemStack,TemplateBuildingPage> (Icon.makeIcon(Textures.set).withName("玄武門之變").asIcon(), new TemplateBuildingPage (player, Arrays.asList(
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("城門").asIcon(), "16_complete_E"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("城門").asIcon(), "16_parts01_E"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("城門").asIcon(), "16_parts02_C")
@@ -101,9 +100,9 @@ public class TemplateTopPage extends CompositeBoxPage {
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("軍帳").asIcon(), "18b_complete_E")
 						))),
 						new Pair<ItemStack,TemplateBuildingPage> (Icon.makeIcon(Textures.set).withName("包青天").asIcon(), new TemplateBuildingPage (player, Arrays.asList(
-								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("縣衙").asIcon(), "19_complete_C"),
+								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("縣衙").asIcon(), "19_complete_S"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("縣衙").asIcon(), "19_parts01_N"),
-								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("縣衙").asIcon(), "19_parts02_W"),
+								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("縣衙").asIcon(), "19_parts02_N"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("縣衙").asIcon(), "19_parts03_N")
 						))),
 						new Pair<ItemStack,TemplateBuildingPage> (Icon.makeIcon(Textures.set).withName("蒙古西征").asIcon(), new TemplateBuildingPage (player, Arrays.asList(
@@ -122,7 +121,7 @@ public class TemplateTopPage extends CompositeBoxPage {
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("江南民居").asIcon(), "22_complete_E")
 						))),
 						new Pair<ItemStack,TemplateBuildingPage> (Icon.makeIcon(Textures.set).withName("紅樓夢").asIcon(), new TemplateBuildingPage (player, Arrays.asList(
-								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("北京四合院").asIcon(), "23_complete_C"),
+								new Pair<ItemStack,String> (Icon.makeIcon(Textures.blue_crate).withName("北京四合院").asIcon(), "23_complete_S"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("北京四合院").asIcon(), "23_parts01_E"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("北京四合院").asIcon(), "23_parts02_N"),
 								new Pair<ItemStack,String> (Icon.makeIcon(Textures.wooden_crate).withName("北京四合院").asIcon(), "23_parts03_N"),

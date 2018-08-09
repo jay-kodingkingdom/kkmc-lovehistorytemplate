@@ -67,10 +67,16 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.comphenix.protocol</groupId>
-      <artifactId>ProtocolLib-API</artifactId>
-      <version>4.3.0</version>
-      <scope>provided</scope>
+    	<groupId>KodingKingdom</groupId>
+    	<artifactId>CommandLines</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+      	<scope>provided</scope>
+    </dependency>
+    <dependency>
+    	<groupId>KodingKingdom</groupId>
+    	<artifactId>Pager</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+      	<scope>provided</scope>
     </dependency>
     <dependency>
         <groupId>org.javatuples</groupId>

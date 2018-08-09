@@ -9,8 +9,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.kodingkingdom.makehistory.icons.Icon;
-import com.kodingkingdom.makehistory.page.Menu;
+import com.kodingkingdom.pager.icons.Icon;
+import com.kodingkingdom.pager.page.Menu;
 
 public class MinecraftLearnHistory {
 	public static Material material = Material.ENCHANTED_BOOK;

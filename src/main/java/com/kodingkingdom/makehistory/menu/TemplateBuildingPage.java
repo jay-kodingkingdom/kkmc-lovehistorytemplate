@@ -3,28 +3,22 @@ package com.kodingkingdom.makehistory.menu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.javatuples.Pair;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import com.kodingkingdom.makehistory.TemplatePlugin;
-import com.kodingkingdom.makehistory.commandline.CommandLine;
-import com.kodingkingdom.makehistory.icons.Icon;
-import com.kodingkingdom.makehistory.icons.Icon.Textures;
-import com.kodingkingdom.makehistory.page.CompositeBoxPage;
-import com.kodingkingdom.makehistory.page.select.Layout;
-import com.kodingkingdom.makehistory.page.select.SelectItem;
-import com.kodingkingdom.makehistory.page.select.SelectItemCategoryPage;
-import com.kodingkingdom.makehistory.page.standard.ControlsPage;
+import com.kodingkingdom.commandline.kinds.SilentCommandLine;
+import com.kodingkingdom.pager.icons.Icon;
+import com.kodingkingdom.pager.icons.Icon.Textures;
+import com.kodingkingdom.pager.page.CompositeBoxPage;
+import com.kodingkingdom.pager.page.select.Layout;
+import com.kodingkingdom.pager.page.select.SelectItem;
+import com.kodingkingdom.pager.page.select.SelectItemCategoryPage;
+import com.kodingkingdom.pager.page.standard.ControlsPage;
 
 public class TemplateBuildingPage extends CompositeBoxPage {
 	
@@ -39,43 +33,30 @@ public class TemplateBuildingPage extends CompositeBoxPage {
 						.map(pair->
 								new SelectItem(()->{
 									Player p = player.get();
-									CommandLine.eval(p, Arrays.asList(
-										"/schematic load " + pair.getValue1(),
-										"/paste -a"
-									));
+									List<String> build = new ArrayList <String> (Arrays.asList(
+										"/schematic load " + pair.getValue1()));
+									
+									String rotation = rotate (pair.getValue1().substring(pair.getValue1().length() - 1),cardinal_direction (p));
+									
+									if (rotation != "")
+										build .addAll (Arrays .asList (rotation));
+
+									build .addAll (Arrays .asList ("/paste -a"));
+										
+									if (p.isOp()) {
+										ArrayList<String> x = new ArrayList<String> ();
+										x .addAll (Arrays .asList ("p weanywhere"));
+										x .addAll (build);
+										x .addAll (Arrays .asList ("p weanywhere"));
+										build = x;}
+									
+									SilentCommandLine.eval (p, build);
 									p .sendMessage("Finished building");
-									/*try {
-										TemplatePlugin.debug("drawing schematic " + pair.getValue1());
-										File file = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldEdit").getDataFolder(), "/schematics/" + pair.getValue1() + ".schematic"); // The schematic file
-										TemplatePlugin.debug("at location " + player.getLocation().getBlockX()+", "+player.getLocation().getBlockY()+", "+player.getLocation().getBlockZ());
-										Vector to = new Vector(player.getLocation().getBlockX(),player.getLocation().getBlockY(),player.getLocation().getBlockZ()); // Where you want to paste
-		
-										World weWorld = new BukkitWorld(player.getWorld());
-										WorldData worldData = weWorld.getWorldData();
-										Clipboard clipboard = ClipboardFormat.SCHEMATIC.getReader(new FileInputStream(file)).read(worldData);
-										Region region = clipboard.getRegion();
-		
-										Extent extent = WorldEdit.getInstance().getEditSessionFactory().getEditSession(weWorld, -1);
-										AffineTransform transform = new AffineTransform();
-		
-										//{ // Uncomment this if you want to rotate the schematic
-		//								    transform = transform.rotateY(90); // E.g. rotate 90
-		//								    extent = new BlockTransformExtent(clipboard, transform, worldData.getBlockRegistry());
-										//}
-		
-										ForwardExtentCopy copy = new ForwardExtentCopy(extent, clipboard.getRegion(), clipboard.getOrigin(), extent, to);
-										if (!transform.isIdentity()) copy.setTransform(transform);
-									    copy.setSourceMask(new ExistingBlockMask(clipboard));
-										Operations.completeLegacy(copy);
-									}
-									catch (Exception e) {
-										TemplatePlugin.debug(e.getMessage());
-									}*/
 								}, pair.getValue0()))
 						.collect(Collectors.toList()));
 					add (new SelectItem(()->{
 						Player p = player.get();
-						CommandLine.eval(p, Arrays.asList(
+						SilentCommandLine.eval(p, Arrays.asList(
 							"/undo"
 						));
 						p .sendMessage("Undo completed");
@@ -87,4 +68,50 @@ public class TemplateBuildingPage extends CompositeBoxPage {
 		}, null, null, null, null, null, null, null);
 		this.compose(contentPage.makePageConnector(self.getSubBox(0, 0, self.getWidth()-1, self.getHeight()-2)));
 		this.compose(controlsPage.makePageConnector(self.getSubBox(0, self.getHeight()-1,7,self.getHeight()-1)));
-		this.compose(new SelectItemCategoryPage(Layout.flow(Arrays.asList(),self.getWidth()-8,1)).makePageConnector(self.getSubBox(8, self.getHeight()-1,self.getWidth()-1,self.getHeight()-1)));}}
+		this.compose(new SelectItemCategoryPage(Layout.flow(Arrays.asList(),self.getWidth()-8,1)).makePageConnector(self.getSubBox(8, self.getHeight()-1,self.getWidth()-1,self.getHeight()-1)));}
+	
+	public String rotate (String from, String to) {
+//		TemplatePlugin.debug(from);
+//		TemplatePlugin.debug(to);
+
+		int from_Z4;
+
+		if (from .equals ("E")) from_Z4 = 0;
+		else if (from .equals ("S")) from_Z4 = 1;
+		else if (from .equals ("W")) from_Z4 = 2;
+		else if (from .equals ("N")) from_Z4 = 3;
+		else return "";
+//		TemplatePlugin.debug("" + from_Z4);
+
+		int to_Z4;
+		
+		if (to .equals ("E")) to_Z4 = 0;
+		else if (to .equals ("S")) to_Z4 = 1;
+		else if (to .equals ("W")) to_Z4 = 2;
+		else if (to .equals ("N")) to_Z4 = 3;
+		else return "";
+//		TemplatePlugin.debug("" + to_Z4);
+		
+		
+		
+		if (from_Z4 == to_Z4)
+			return "";
+		else {
+			int diff = (to_Z4 - from_Z4 + 4) % 4;
+			return "/rotate " + (90 * diff);
+		}
+	}
+	
+	public String cardinal_direction (Player p){
+        float y = p.getLocation().getYaw();
+
+        if ( y < 0 ) y += 360;
+        y %= 360;
+        int i = (int)((y+8) / 90);
+        
+        if (i == 0) return "W";
+        else if(i == 1) return "N";
+        else if(i == 2) return "E";
+        else if(i == 3) return "S";
+        else return "W";
+   }}
